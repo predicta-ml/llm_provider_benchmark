@@ -7,9 +7,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from dotenv import load_dotenv
 import json
 
+# ----------- Configuración inicial ----------
 load_dotenv()
 
-# ----------- Configuración inicial ----------
 st.set_page_config(page_title="Benchmark LLM Providers", layout="wide")
 
 # ----------- Providers disponibles -----------

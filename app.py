@@ -8,7 +8,7 @@ import threading
 import queue
 from dotenv import load_dotenv
 
-# --- CONFIGURACIÓN INICIAL Y CARGA DE APIs ---
+# --- CONFIGURACIÓN INICIAL ---
 
 # Cargar las variables de entorno (API keys) desde el archivo .env
 load_dotenv()
@@ -27,7 +27,6 @@ st.caption("Escribe un prompt para enviarlo simultáneamente a todos los proveed
 
 # Diccionario centralizado para configurar los proveedores de LLM.
 # Facilita añadir o modificar proveedores en el futuro.
-# NOTA: Asegúrate de que los modelos especificados estén disponibles para tu API key.
 PROVIDERS = {
     "Groq": {
         "api_url": "https://api.groq.com/openai/v1/chat/completions",
@@ -57,7 +56,7 @@ PROVIDERS = {
         "api_url": "http://localhost:11434/api/chat",
         "host": "localhost",
         "api_key": "ollama", # No se requiere API Key real
-        "model": "llama3.1", # Asegúrate de tener este modelo: `ollama pull llama3`
+        "model": "llama3.1",
     }
 }
 
