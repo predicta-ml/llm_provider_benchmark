@@ -52,7 +52,7 @@ PROVIDERS = {
         "api_key": os.getenv("TOGETHER_API_KEY"),
         "model": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
     },
-    "Industria Predicta": {
+    "Self-hosted (Ollama)": {
         "api_url": "http://localhost:11434/api/chat",
         "host": "localhost",
         "api_key": "ollama", # No se requiere API Key real
@@ -99,7 +99,7 @@ def get_llm_response(provider_name, prompt):
     elif provider_name == "Google":
         api_url += f"?key={api_key}"
         data = {"contents": [{'parts': [{'text': m['content']}] for m in messages}]}
-    elif provider_name == "Industria Predicta":
+    elif provider_name == "Self-hosted (Ollama)":
         data = {"model": model, "messages": messages, "stream": False}
     else:
         raise NotImplementedError(f"Formato de API para {provider_name} no implementado.")
@@ -111,7 +111,7 @@ def get_llm_response(provider_name, prompt):
     resp_json = response.json()
     if provider_name in ["Groq", "Fireworks.ai", "Together.ai"]:
         return resp_json["choices"][0]["message"]["content"]
-    elif provider_name == "Industria Predicta":
+    elif provider_name == "Self-hosted (Ollama)":
         return resp_json["message"]["content"]
     elif provider_name == "Google":
         return resp_json["candidates"][0]["content"]["parts"][0]["text"]
